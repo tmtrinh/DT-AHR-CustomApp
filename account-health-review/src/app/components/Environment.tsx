@@ -1,11 +1,17 @@
-import React, {useState} from "react";
+import React, {useContext, useRef, useState} from "react";
 import { useForm } from 'react-hook-form';
 import { AppHeader, AppName, Page, Flex, Code, Heading, Paragraph, Text, Button, FormField, TextInput  } from "@dynatrace/strato-components-preview";
 import { Form } from "react-router-dom";
+import { Questionnaire } from "./Questionnaire";
+
+//Documentation: https://developer.dynatrace.com/reference/design-system/preview/forms/TextInput/
 
 type EnvForm = {
   env: string | null;
 };
+
+
+let globalEnv = '';
 
 export const Environment = () => {
   const {
@@ -60,13 +66,25 @@ export const Environment = () => {
             }}
             />
         </FormField>
-        <Button type="submit" variant="emphasized">
-          Submit
+        <Button type="submit" variant="emphasized" onClick={() => {
+          globalEnv = env;
+        }}>
+          Check
         </Button>
-        <Text>
-          The form has {!isSubmitSuccessful && 'not'} been submitted.
-        </Text>
+        {isSubmitSuccessful && (
+          <Text>
+            Checking tenant {globalEnv} ...
+          </Text>
+          )}
       </Flex>
     </form>
   );
 };
+/*
+if (globalEnv != ''){
+  export const TENANT = globalEnv;
+  console.log(TENANT);
+  export const LIVE_URL = `https://${TENANT}.live.dynatrace.com/`;
+  export const APPS_URL = `https://${TENANT}.apps.dynatrace.com/`;
+}
+*/

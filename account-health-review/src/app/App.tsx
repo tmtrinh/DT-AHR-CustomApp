@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { AppHeader, AppName, Page, Flex, Code, Heading, Paragraph, Text, Button, FormField, TextInput  } from "@dynatrace/strato-components-preview";
 import { Form } from "react-router-dom";
 import { Environment } from "./components/Environment";
+import { Questionnaire } from "./components/Questionnaire";
 
 export const App = () => {
   return (
@@ -16,6 +17,8 @@ export const App = () => {
         <Flex padding={16} flexDirection="column">
           <Heading level={1}>Account Health Review</Heading>
           <Environment />
+          ----------------
+          <Questionnaire />
         </Flex>
       </Page.Main>
     </Page>
